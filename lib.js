@@ -236,7 +236,7 @@ class image{
 	}
 	drawImg(X,Y,W,H, alpha, dsdx=[0,0], dwdh=[0,0]){
 		c.globalAlpha = alpha;
-		c.drawImage(this.img, X,Y, W,H);
+		c.drawImage(this.img, X-Camera.position[0],Y-Camera.position[1], W,H);
 		/*
 		if(dwdh == [0,0]){
 		}else{
@@ -248,7 +248,7 @@ class image{
 
 	drawRotatedImg(X, Y, W, H, alpha, rotation, rotateAroundX = 0, rotateAroundY = 0){
 		c.save();
-		c.translate(X+W/2, Y+H/2);
+		c.translate(X+W/2+Camera.position[0], Y+H/2+Camera.position[1]);
 		c.rotate(rotation);
 		this.drawImg(-W/2, -H/2, W, H, alpha);
 		c.restore();
@@ -441,7 +441,7 @@ class TextBox {
             w = this.rect[2],
             h = this.rect[3];
         // wrapping logic here
-        c.font = this.textSize+'px testfont';
+        c.font = this.textSize+'px Rubik Bubbles';
         var words = this.string.split(' ');
 
         var line = '';
@@ -484,8 +484,9 @@ class TextBox {
         }
         for(var k in newLines){
             c.fillStyle = this.color;
-            c.fillText(newLines[k], x, y+(k*this.textSize));
+            c.fillText(newLines[k], x-Camera.position[0], y+(k*this.textSize)-Camera.position[1]);
         }
+
     }
 }
 function enlargeRect(inputRect, a,b, preserveBottomVerticesY=false){
@@ -513,7 +514,7 @@ function enlargeRect(inputRect, a,b, preserveBottomVerticesY=false){
     return rect;
 }
 
-function showText(text, X, Y, Size, colour = "rgb(0, 0, 0)", bold = false, stroke = false, fnt = "Arial", align = 'center'){
+function showText(text, X, Y, Size, colour = "rgb(0, 0, 0)", bold = false, stroke = false, fnt = "Rubik Bubbles", align = 'center'){
 	c.save();
 	c.beginPath();
 	if(bold === true){
@@ -525,7 +526,7 @@ function showText(text, X, Y, Size, colour = "rgb(0, 0, 0)", bold = false, strok
 	c.textAlign = align;
 	if(stroke === false){
 		c.fillStyle=colour;
-		c.fillText(text, X, Y);
+		c.fillText(text, X-Camera.position[0], Y-Camera.position[1]);
 	}
 	if(stroke === true){
 		c.lineWidth = Size/25;
@@ -541,7 +542,7 @@ let sfx = {
 		src:["./assets/audio/bg_music.mp3"],
 		autoplay:true,
 		loop:true,
-		volume:0.3,
+		volume:0.2,
 	}),
 	select: new Howl({src:["./assets/audio/select.mp3"], volume:2}),
 	click: new Howl({src:["./assets/audio/click.mp3"], volume:0.5}),
@@ -549,6 +550,9 @@ let sfx = {
 	pop: new Howl({src:["./assets/audio/pop.mp3"]}),
 	woosh: new Howl({src:["./assets/audio/woosh.mp3"], volume: 0.4}),
 	hammer1: new Howl({src:["./assets/audio/hammer.mp3"], volume: 0.5}),
+
+	wrong: new Howl({src:["./assets/audio/fail.wav"], volume: 1}),
+	correct: new Howl({src:["./assets/audio/success.wav"], volume: 0.5}),
 }
 
 //
@@ -603,3 +607,8 @@ function get_entities_by_type(type){
 	}
 	return out;
 }
+
+let cloud_nums = 0;
+let end = false;
+let correct = 0;
+let wrong = 0;
