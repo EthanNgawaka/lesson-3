@@ -564,25 +564,25 @@ let transThresh = 2;
 // jank as hell but just use the mouse obj
 // Touch event handlers
 function handleTouchStart(event) {
-	event.preventDefault();
+    event.preventDefault();
     mouse.x = event.touches[0].clientX/sf[0];
     mouse.y = event.touches[0].clientY/sf[1];
     mouse.button.left = true;
 }
 
 function handleTouchMove(event) {
-	event.preventDefault();
+    event.preventDefault();
     mouse.x = event.touches[0].clientX/sf[0];
     mouse.y = event.touches[0].clientY/sf[1];
 }
 
 function handleTouchEnd(event) {
-	event.preventDefault();
+    event.preventDefault();
     mouse.button.left = false;
 }
 
 function handleTouchCancel(event) {
-	event.preventDefault();
+    event.preventDefault();
     mouse.button.left = false;
 }
 // Add touch event listeners

@@ -78,8 +78,8 @@ let transSpeed = 0.1;
 function onResize(){
 	canvas.style.width = "92.5vw"
 	canvas.style.height = "90vh"
-	sf[0] = canvas.width/windowW;
-	sf[1] = canvas.height/windowH;
+	sf[0] = window.innerWidth/windowW;
+	sf[1] = window.innerHeight/windowH;
 }
 
 let failed = false;
