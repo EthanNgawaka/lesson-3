@@ -274,9 +274,17 @@ class Worry{
 				this.targetX = this.start_positions[0][0] + mouse.x - this.start_positions[1][0];
 				this.targetY = this.start_positions[0][1] + mouse.y - this.start_positions[1][1];
 
-
 			}
 
+		}
+		if(this.rect[0]+this.rect[2]*0.20 < 0 || this.rect[0]+this.rect[2]*0.80 > windowW){
+			if(this.rect[0] < windowW/3){
+				this.swiped = 0 - this.rect[2]*2;
+			}else{
+				this.swiped = windowW + this.rect[2];
+			}
+			sfx.woosh.play()
+			this.held = false;
 		}
 
 		if(!mouse.button.left && this.pressed){
