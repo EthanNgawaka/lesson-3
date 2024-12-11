@@ -240,19 +240,21 @@ class Worry{
 				this.rect[0] = lerp(this.rect[0], this.start_positions[0][0] + mouse.x - this.start_positions[1][0], 0.2);
 				this.rect[1] = lerp(this.rect[1], this.start_positions[0][1] + mouse.y - this.start_positions[1][1], 0.2);
 				this.targetY = this.rect[1];
+
+				if(this.rect[0]+this.rect[2]*0.10 < 0 || this.rect[0]+this.rect[2]*0.90 > windowW){
+					console.log(this.rect[0], windowW/2)
+					if(this.rect[0] < windowW/3){
+						this.swiped = 0 - this.rect[2]*2;
+					}else{
+						this.swiped = windowW + this.rect[2];
+					}
+					sfx.woosh.play()
+					this.held = false;
+				}
 			}
 		}
 
 		if(!mouse.button.left && this.pressed){
-			// if let go check how much its moving
-			let x_movement = this.rect[0] - this.old_rect[0];
-			if(x_movement > this.move_thresh){
-				this.swiped = windowW + this.rect[2];
-			}
-			if(x_movement < -this.move_thresh){
-				this.swiped = 0 - this.rect[2]*2;
-			}
-			sfx.woosh.play()
 			this.held = false;
 		}
 
