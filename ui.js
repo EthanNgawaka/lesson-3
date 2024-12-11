@@ -239,6 +239,10 @@ class Worry{
 			}
 		}else{
 			this.targetY = this.rect[1]
+			if(this.targetY < 0 || this.targetY > windowH){
+				this.done_trans = false;
+				this.targetY = windowH/2
+			}
 		}
 
 
@@ -278,7 +282,7 @@ class Worry{
 		if(!mouse.button.left && this.pressed){
 			this.held = false;
 			// released
-			this.vel[0] = -(this.old_rect[0] - this.rect[0])*2
+			this.vel[0] = -(this.old_rect[0] - this.rect[0])
 			this.vel[1] = -(this.old_rect[1] - this.rect[1])*2
 		}
 		if(!this.held){
