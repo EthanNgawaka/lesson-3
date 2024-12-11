@@ -6,30 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Rubik+Bubbles&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik+Bubbles&display=swap" rel="stylesheet">
     <title>Worry Clouds</title>
     <style>
-		.rubik-bubbles-regular {
-		  font-family: "Rubik Bubbles", system-ui;
-		  font-weight: 400;
-		  font-style: normal;
-		}
-
-		body::before {
-			overflow:hidden;
-			content: '';
-			position: fixed; /* Fix it to the viewport */
-			top: -5vh;
-			left: -5vw;
-			width: 110vw; /* Full width */
-			height: 110vh; /* Full height */
-			background-image: url('./assets/imgs/bg/room.png');
-			background-size: cover; /* Cover the entire background */
-			background-position: center; /* Center the background image */
-			background-repeat: no-repeat; /* Prevent tiling */
-			filter: blur(16px); /* Adjust blur amount as needed */
-			z-index: 0; /* Send it to the back */
-		}
+	.montserrat-regular {
+	  font-family: "Montserrat", sans-serif;
+	  font-optical-sizing: auto;
+	  font-weight: 400;
+	  font-style: normal;
+	}
+	body::before {
+		overflow:hidden;
+		content: '';
+		position: fixed; /* Fix it to the viewport */
+		top: -5vh;
+		left: -5vw;
+		width: 110vw; /* Full width */
+		height: 110vh; /* Full height */
+		background-image: url('./assets/imgs/bg/room.png');
+		background-size: cover; /* Cover the entire background */
+		background-position: center; /* Center the background image */
+		background-repeat: no-repeat; /* Prevent tiling */
+		filter: blur(16px); /* Adjust blur amount as needed */
+		z-index: 0; /* Send it to the back */
+	}
         canvas {
 			padding-left: 0;
 			padding-right: 0;

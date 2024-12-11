@@ -3,6 +3,8 @@ const grad = new image("./assets/imgs/bg/bg.png");
 const rotate = new image("./assets/imgs/ui/rotate.png");
 const eliza = new image("./assets/imgs/eliza/happy.png");
 let bgMusicOn = true;
+
+let pool = [];
 worries = {
   "INVALID": [
     "What if a dragon shows up during the tournament?",
@@ -118,7 +120,28 @@ if(window.mobileCheck()){
 //================//
 
 let menu = false;
+function shuffle(array) { // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+  let currentIndex = array.length;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+}
 function switch_to_main(temp=null){
+	pool = [
+		"INVALID","INVALID","INVALID","INVALID","INVALID","INVALID",
+		"VALID","VALID","VALID","VALID","VALID","VALID","VALID","VALID","VALID",
+	];
+	shuffle(pool)
+	console.log(pool)
 	failed = false;
 	menu = false;
 	transition();
@@ -130,7 +153,7 @@ function switch_to_main(temp=null){
 	correct = 0;
 	wrong = 0;
 	worry_timer = 0;
-	worry_increase = 0.5;
+	worry_increase = 0.3;
 }
 
 function unmute(btn){
@@ -174,7 +197,7 @@ function switch_to_menu(){
 	let tag = new Button(
 		[windowW*(0.5 - 0.8/2),windowH*0.1,windowW*0.8,windowH*0.2],
 		"./assets/imgs/ui/cloud.png",
-		"The Worry Cloud Challenge", "black", null,
+		"Worry Cloud Buster", "black", null,
 	);
 	tag.override_size = windowH*0.06
 	tag.disable = true;
@@ -209,8 +232,8 @@ function draw(){
 	if(!menu && isTransitioned){
 		grad.drawImg(0,0,windowW,windowH, 1);
 		if(!end){
-			showText((wrong+correct)+"/"+10, windowW/2-5, windowH*0.25+5, 45, "black", true)
-			showText((wrong+correct)+"/"+10, windowW/2, windowH*0.25, 45, "white", true)
+			showText((wrong+correct)+"/"+15, windowW/2-5, windowH*0.25+5, 45, "black", true)
+			showText((wrong+correct)+"/"+15, windowW/2, windowH*0.25, 45, "white", true)
 		}
 	}
 
@@ -245,7 +268,7 @@ function update_camera(dt){
 	}
 }
 
-spawn_rate = 1;
+spawn_rate = 2;
 spawn_timer = 0;
 over = false; // debug
 function update(dt){
@@ -257,10 +280,11 @@ function update(dt){
 		worry_timer += dt*worry_increase;
 
 		spawn_timer += dt;
-		if(spawn_timer > spawn_rate && cloud_nums < 10 && !failed){
-			spawn_rate = over ? 0 : random(1.5,5);
+		if(spawn_timer > spawn_rate && cloud_nums < 15 && !failed){
+			spawn_rate = over ? 0 : random(3.5,6);
 			spawn_timer = 0;
-			let type = random(0,1)>0.5 ? "INVALID" : "VALID";
+			let type = pool[pool.length-1];
+			pool.pop()
 			entities.push(new Worry(worries[type][random(0,worries[type].length-1,true)], type));
 			sfx.woosh.play();
 			cloud_nums += 1;

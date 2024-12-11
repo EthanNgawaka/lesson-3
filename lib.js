@@ -441,7 +441,7 @@ class TextBox {
             w = this.rect[2],
             h = this.rect[3];
         // wrapping logic here
-        c.font = this.textSize+'px Rubik Bubbles';
+        c.font = this.textSize+'px Montserrat';
         var words = this.string.split(' ');
 
         var line = '';
@@ -514,7 +514,7 @@ function enlargeRect(inputRect, a,b, preserveBottomVerticesY=false){
     return rect;
 }
 
-function showText(text, X, Y, Size, colour = "rgb(0, 0, 0)", bold = false, stroke = false, fnt = "Rubik Bubbles", align = 'center'){
+function showText(text, X, Y, Size, colour = "rgb(0, 0, 0)", bold = false, stroke = false, fnt = "Montserrat", align = 'center'){
 	c.save();
 	c.beginPath();
 	if(bold === true){

@@ -87,7 +87,7 @@ class Overlay{
 }
 
 class Button{
-	constructor(rect, image_path, string, txt_col, onAction, font="Rubik Bubbles"){
+	constructor(rect, image_path, string, txt_col, onAction, font="Montserrat"){
 		this.rect = rect;
 		this.drawing_rect = rect;
 		this.img = new image(image_path);
@@ -153,6 +153,7 @@ class Worry{
 		let w = 15 * this.text.length;
 		this.rect = [random(windowW*0.1, windowW - w), windowH, w, windowW*0.1];
 		this.targetY = random(windowH*0.25, windowH*0.6);
+		this.targetX = this.rect[0];
 
 		this.offY = 0;
 		this.timer = 0;
@@ -167,18 +168,20 @@ class Worry{
 		this.img = new image("./assets/imgs/ui/cloud.png");
 
 		this.nimbus_timer = 0;
+		this.vel = [0,0]
+		this.done_trans = false
 	}
 
 	validate(choice){
 		if(choice == this.type){
 			entities.push(new Overlay("green", 1));
-			worry_increase *= 0.9;
+			worry_increase *= 0.5;
 			nimbus.state = "well";
 			correct += 1;
 			sfx.correct.play();
 		}else{
 			entities.push(new Overlay("red", 1));
-			worry_increase += 1;
+			worry_increase += 0.6;
 			nimbus.state = "sad";
 			wrong += 1;
 			sfx.wrong.play();
@@ -194,7 +197,7 @@ class Worry{
 				break;
 			}
 		}
-		if(cloud_nums >= 10 && no_clouds){
+		if(cloud_nums >= 15 && no_clouds){
 			sfx.pop.play();
 			end = true;
 			nimbus.change_string("Great job! You've helped Eliza calm her mind! Try again for an even higher score!");
@@ -214,7 +217,32 @@ class Worry{
 	}
 
 	update(dt){
-		this.rect[1] = lerp(this.rect[1], this.targetY + math.sin(this.timer*math.pi)*25, 0.05);
+		this.rect[1] += this.vel[1]
+		this.rect[0] += this.vel[0]
+		let off = math.sin(this.timer*math.pi/2)*25
+
+		let distx = (this.targetX - this.rect[0])
+		let disty = (this.targetY+off - this.rect[1])
+
+		if(this.held){
+			this.rect[0] = this.targetX
+			this.rect[1] = this.targetY
+			this.vel = [0,0]
+		}else{
+			this.vel[0] += 0.005*(distx)
+			this.vel[1] += 0.005*(disty)
+			this.vel[1] = this.vel[1]*0.9
+		}
+		if(!this.done_trans){
+			if(math.abs(this.targetY - this.rect[1]) < 1){
+				this.done_trans = true;
+			}
+		}else{
+			this.targetY = this.rect[1]
+		}
+
+
+
 		this.timer += dt
 
 		let w = 40;
@@ -237,25 +265,24 @@ class Worry{
 			}
 
 			if(!this.pressed || this.held){
-				this.rect[0] = lerp(this.rect[0], this.start_positions[0][0] + mouse.x - this.start_positions[1][0], 0.2);
-				this.rect[1] = lerp(this.rect[1], this.start_positions[0][1] + mouse.y - this.start_positions[1][1], 0.2);
-				this.targetY = this.rect[1];
+				//this.rect[0] = lerp(this.rect[0], this.start_positions[0][0] + mouse.x - this.start_positions[1][0], 0.2);
+				//this.rect[1] = lerp(this.rect[1], this.start_positions[0][1] + mouse.y - this.start_positions[1][1], 0.2);
+				this.targetX = this.start_positions[0][0] + mouse.x - this.start_positions[1][0];
+				this.targetY = this.start_positions[0][1] + mouse.y - this.start_positions[1][1];
 
-				if(this.rect[0]+this.rect[2]*0.10 < 0 || this.rect[0]+this.rect[2]*0.90 > windowW){
-					console.log(this.rect[0], windowW/2)
-					if(this.rect[0] < windowW/3){
-						this.swiped = 0 - this.rect[2]*2;
-					}else{
-						this.swiped = windowW + this.rect[2];
-					}
-					sfx.woosh.play()
-					this.held = false;
-				}
+
 			}
+
 		}
 
 		if(!mouse.button.left && this.pressed){
 			this.held = false;
+			// released
+			this.vel[0] = -(this.old_rect[0] - this.rect[0])*2
+			this.vel[1] = -(this.old_rect[1] - this.rect[1])*2
+		}
+		if(!this.held){
+			this.targetX = this.rect[0]
 		}
 
 		if(this.swiped){
@@ -264,11 +291,13 @@ class Worry{
 
 		if(this.rect[0] < -this.rect[2]){ // swiped left
 			entities = arrayRemove(entities, this);
+			sfx.woosh.play()
 			this.validate("VALID")
 			return;
 		}
 		if(this.rect[0] > windowW){ // swiped left
 			entities = arrayRemove(entities, this);
+		sfx.woosh.play()
 			this.validate("INVALID")
 			return;
 		}
@@ -280,7 +309,16 @@ class Worry{
 	draw(){
 		let drawing_rect = [...this.rect];
 		let off = 1;
-		if(this.hovered || this.held){
+		let not_held = true;
+		for(let e of entities){
+			if(e instanceof Worry && e != this){
+				if(e.held){
+					not_held = false;
+					break;
+				}
+			}
+		}
+		if((this.hovered&&not_held) || this.held){
 			drawing_rect = enlargeRect(drawing_rect,1.1,1.1);
 			off = 1.1;
 		}
