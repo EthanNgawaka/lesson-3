@@ -137,12 +137,12 @@ function shuffle(array) { // https://stackoverflow.com/questions/2450954/how-to-
   }
 }
 function switch_to_main(temp=null){
+	worry_pool = {...worries}
 	pool = [
 		"INVALID","INVALID","INVALID","INVALID","INVALID","INVALID","INVALID","INVALID","INVALID",
 		"VALID","VALID","VALID","VALID","VALID","VALID",
 	];
 	shuffle(pool)
-	console.log(pool)
 	failed = false;
 	menu = false;
 	transition();
@@ -286,7 +286,9 @@ function update(dt){
 			spawn_timer = 0;
 			let type = pool[pool.length-1];
 			pool.pop()
-			entities.push(new Worry(worries[type][random(0,worries[type].length-1,true)], type));
+			choice = random(0,worries[type].length-1,true)
+			entities.push(new Worry(worry_pool[type][choice], type));
+			worry_pool[type] = arrayRemove(worry_pool[type], worry_pool[type][choice])
 			sfx.woosh.play();
 			cloud_nums += 1;
 		}
