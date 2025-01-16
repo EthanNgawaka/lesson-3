@@ -147,6 +147,7 @@ class Button{
 
 class Worry{
 	constructor(text, type){
+		console.log(text, type);
 		this.text = text;
 		this.type = type; // valid or invalid -> string
 

@@ -274,6 +274,12 @@ function update_camera(dt){
 spawn_rate = 2;
 spawn_timer = 0;
 over = false; // debug
+let loading = true;
+if(over){
+	spawn_rate = 0;
+	loading = false;
+	intro = false;
+}
 function update(dt){
 	for(let e of entities){
 		e.update(dt);
@@ -288,7 +294,7 @@ function update(dt){
 			spawn_timer = 0;
 			let type = pool[pool.length-1];
 			pool.pop()
-			choice = random(0,worries[type].length-1,true)
+			choice = random(0,worry_pool[type].length-1,true)
 			entities.push(new Worry(worry_pool[type][choice], type));
 			worry_pool[type] = arrayRemove(worry_pool[type], worry_pool[type][choice])
 			sfx.woosh.play();
@@ -315,7 +321,6 @@ let curr_intro_img = 0;
 let prev_img_pos = [0,0];
 let curr_img_pos = [0,0];
 let mouse_down = false;
-let loading = true;
 let t = 0;
 function main(curr_time){
 	if(prev_time == 0){ prev_time = curr_time; }
