@@ -4,6 +4,8 @@ const rotate = new image("./assets/imgs/ui/rotate.png");
 const eliza = new image("./assets/imgs/eliza/happy.png");
 let bgMusicOn = true;
 
+let intro = true;
+
 let pool = [];
 worries = {
   "VALID": [
@@ -198,7 +200,7 @@ function switch_to_menu(){
 	let tag = new Button(
 		[windowW*(0.5 - 0.8/2),windowH*0.1,windowW*0.8,windowH*0.2],
 		"./assets/imgs/ui/cloud.png",
-		"Worry Cloud Buster", "black", null,
+		"Worry Cloud Buster", "black", null, "Montserrat"
 	);
 	tag.override_size = windowH*0.06
 	tag.disable = true;
@@ -307,11 +309,43 @@ function update(dt){
 	update_camera(dt);
 }
 
-let prev_time = 0
+let prev_time = 0;
+let imgs = [new image("./assets/intro/1.jpg"), new image("./assets/intro/2.jpg"), new image("./assets/intro/3.jpg"), new image("./assets/intro/4.jpg")];
+let curr_intro_img = 0;
+let prev_img_pos = [0,0];
+let curr_img_pos = [0,0];
+let mouse_down = false;
 function main(curr_time){
 	if(prev_time == 0){ prev_time = curr_time; }
 	let dt = (curr_time - prev_time)/1000;
 	prev_time = curr_time;
+
+	if(intro){
+		if(curr_intro_img > 0){
+			imgs[curr_intro_img-1].drawImg(prev_img_pos[0],prev_img_pos[1],windowW,windowH);
+		}
+		imgs[curr_intro_img].drawImg(curr_img_pos[0],curr_img_pos[1],windowW,windowH);
+		prev_img_pos[0] = lerp(prev_img_pos[0], -windowW, 0.1);
+		curr_img_pos[0] = lerp(curr_img_pos[0], 0, 0.1);
+		if(mouse.button.left && !mouse_down){
+			curr_intro_img++;
+			curr_img_pos[0] = windowW;
+			prev_img_pos[0] = 0;
+			if(curr_intro_img > 3){
+				intro = false;
+			}
+		}
+		mouse_down = mouse.button.left;
+		oldKeys = {...keys};
+		if(window.mobileCheck()){
+			onResize();
+		}
+		if(window.innerHeight > window.innerWidth){
+			rotate.drawImg(windowW/2 - 150/sf[0],windowH/2 - 150/sf[1],300/sf[0],300/sf[1],1);
+		}
+		requestAnimationFrame(main);
+		return;
+	}
 
 	if(isTransitioned){
 		draw();

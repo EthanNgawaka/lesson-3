@@ -87,7 +87,7 @@ class Overlay{
 }
 
 class Button{
-	constructor(rect, image_path, string, txt_col, onAction, font="Montserrat"){
+	constructor(rect, image_path, string, txt_col, onAction, font="Komika"){
 		this.rect = rect;
 		this.drawing_rect = rect;
 		this.img = new image(image_path);
