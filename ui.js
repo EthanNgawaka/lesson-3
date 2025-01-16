@@ -61,7 +61,7 @@ class Nimbus{
 		if(this.string.length > 0){
 			draw_rect = [...this.textBox.rect];
 			draw_rect[1] += 25
-			draw_rect[0] -= 12
+			draw_rect[0] -= 4
 			this.bubble.drawImg(...enlargeRect(draw_rect,1,1.5), 1);
 			this.textBox.draw();
 		}
