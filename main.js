@@ -315,10 +315,47 @@ let curr_intro_img = 0;
 let prev_img_pos = [0,0];
 let curr_img_pos = [0,0];
 let mouse_down = false;
+let loading = true;
+let t = 0;
 function main(curr_time){
 	if(prev_time == 0){ prev_time = curr_time; }
 	let dt = (curr_time - prev_time)/1000;
 	prev_time = curr_time;
+
+	if(loading){
+		drawRect([0,0,windowW,windowH], "black");
+		if(t > 5){
+			showText("Click to continue...",windowW/2, windowH/2, 40, "white")
+			if(mouse.button.left){
+				loading=false;
+				mouse_down =true;
+			}
+			if(window.mobileCheck()){
+				onResize();
+			}
+			if(window.innerHeight > window.innerWidth){
+				rotate.drawImg(windowW/2 - 150/sf[0],windowH/2 - 150/sf[1],300/sf[0],300/sf[1],1);
+			}
+			requestAnimationFrame(main);
+			return;
+		}
+		t += dt;
+		let r = 100
+		for(let i = 1; i < 6; i++){
+			drawCircle([windowW/2 + math.sin((i*math.pi/6 + t*math.pi))*r, windowH/2 + r*math.cos((i*math.pi/6 + t*math.pi))], 10, "white");
+		}
+		showText("Loading...",windowW/2, windowH/2 + 150, 20, "white")
+		mouse_down = mouse.button.left;
+		oldKeys = {...keys};
+		if(window.mobileCheck()){
+			onResize();
+		}
+		if(window.innerHeight > window.innerWidth){
+			rotate.drawImg(windowW/2 - 150/sf[0],windowH/2 - 150/sf[1],300/sf[0],300/sf[1],1);
+		}
+		requestAnimationFrame(main);
+		return;
+	}
 
 	if(intro){
 		if(curr_intro_img > 0){
