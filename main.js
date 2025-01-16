@@ -329,7 +329,8 @@ function main(curr_time){
 
 	if(loading){
 		drawRect([0,0,windowW,windowH], "black");
-		if(t > 5){
+		console.log(total_images, loaded_images);
+		if(total_images == loaded_images){
 			showText("Click to continue...",windowW/2, windowH/2, 40, "white")
 			if(mouse.button.left){
 				loading=false;
@@ -350,6 +351,7 @@ function main(curr_time){
 			drawCircle([windowW/2 + math.sin((i*math.pi/6 + t*math.pi))*r, windowH/2 + r*math.cos((i*math.pi/6 + t*math.pi))], 10, "white");
 		}
 		showText("Loading...",windowW/2, windowH/2 + 150, 20, "white")
+		showText(loaded_images+"/"+total_images,windowW/2, windowH/2 + 200, 20, "white");
 		mouse_down = mouse.button.left;
 		oldKeys = {...keys};
 		if(window.mobileCheck()){

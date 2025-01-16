@@ -12,15 +12,15 @@ var c = canvas.getContext("2d");
 document.addEventListener('contextmenu', event => event.preventDefault());
 
 window.mobileCheck = function() {
-  let check = false;
-  (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) check = true;})(navigator.userAgent||navigator.vendor||window.opera);
-  return check;
+    let check = false;
+    (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) check = true;})(navigator.userAgent||navigator.vendor||window.opera);
+    return check;
 };
 
 function converttxttoArray(filename) {
     var reader = (window.XMLHttpRequest != null) 
-                 ? new XMLHttpRequest() 
-                 : new ActiveXObject("Microsoft.XMLHTTP");
+        ? new XMLHttpRequest() 
+        : new ActiveXObject("Microsoft.XMLHTTP");
     reader.open("GET", filename, false);
     reader.onload = function() {
         let output = [];
@@ -43,17 +43,17 @@ let gamepads = {};
 window.addEventListener(
     "gamepadconnected",
     (e) => {
-      gamepadHandler(e, true);
+        gamepadHandler(e, true);
     },
     false
-  );
-  window.addEventListener(
+);
+window.addEventListener(
     "gamepaddisconnected",
     (e) => {
-      gamepadHandler(e, false);
+        gamepadHandler(e, false);
     },
     false
-  );
+);
 function gamepadHandler(e,connect){
     gamepad = e.gamepad;
     if(connect){
@@ -70,7 +70,7 @@ var mouse = {x: 0, y: 0, scroll:0,oldx: 0, oldy: 0, button: {left: false, middle
 var oldMouseDelta = {x:0,y:0}
 
 this.canvas.addEventListener('wheel',function(event){
-    
+
     mouse.scroll = event
     event.preventDefault();
 }, false);
@@ -154,36 +154,36 @@ function dist(rect1, rect2){
     return Math.hypot(rect1[0]-rect2[0], rect1[1]-rect2[1]);
 }
 function shuffle(array) {
-  let currentIndex = array.length;
+    let currentIndex = array.length;
 
-  // While there remain elements to shuffle...
-  while (currentIndex != 0) {
+    // While there remain elements to shuffle...
+        while (currentIndex != 0) {
 
-    // Pick a remaining element...
-    let randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
+            // Pick a remaining element...
+                let randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
 
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
-  }
+            // And swap it with the current element.
+                [array[currentIndex], array[randomIndex]] = [
+                    array[randomIndex], array[currentIndex]];
+        }
 }
 
 function add_rect(rect1, rect2){
-	return [rect1[0] + rect2[0], rect1[1] + rect2[1], rect1[2], rect1[3]];
+    return [rect1[0] + rect2[0], rect1[1] + rect2[1], rect1[2], rect1[3]];
 }
 
 function add(vel1, vel2){
-	rect = add_rect([...vel1,0,0], vel2);
-	return [rect[0],rect[1]];
+    rect = add_rect([...vel1,0,0], vel2);
+    return [rect[0],rect[1]];
 }
 
 function random(min, max, round = false){
-	if(round === false){
-		return Math.random()*(max-min)+min;
-	}else{
-		return Math.round(Math.random()*(max-min)+min);
-	}
+    if(round === false){
+        return Math.random()*(max-min)+min;
+    }else{
+        return Math.round(Math.random()*(max-min)+min);
+    }
 }
 
 function lerp(v0, v1, t) {
@@ -201,17 +201,17 @@ function arrayRemove(arr, value) {
 }
 
 function lineIntersection(x1, y1, x2, y2, x3, y3, x4, y4){ //returns [x,y] of intersection, if there is no intersection then return false
-	var den = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
-	if(den == 0){return false}
-	var t = ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / den;
-	var u = -((x1 - x2) * (y1 - y3) - (y1 - y2) * (x1 - x3)) / den;
-	if(t > 0 && t < 1 && u > 0){
-		x = x1 + t * (x2 - x1);
-		y = y1 + t * (y2 - y1);
-		return [x,y];
-	}else{
-		return false;
-	}
+    var den = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+    if(den == 0){return false}
+    var t = ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / den;
+    var u = -((x1 - x2) * (y1 - y3) - (y1 - y2) * (x1 - x3)) / den;
+    if(t > 0 && t < 1 && u > 0){
+        x = x1 + t * (x2 - x1);
+        y = y1 + t * (y2 - y1);
+        return [x,y];
+    }else{
+        return false;
+    }
 }
 function AABBCollision(rect1, rect2){
     var rect1X = rect1[0], rect1Y = rect1[1], rect1W = rect1[2], rect1H = rect1[3];
@@ -220,39 +220,45 @@ function AABBCollision(rect1, rect2){
 }
 
 const identityTransform = [1,0,0,1,0,0];
+let total_images = 0;
+let loaded_images = 0;
 // Drawing
 class image{
-	constructor(imageLocation){
-		this.img = new Image();
-		this.img.src=imageLocation;
-	}	
+    constructor(imageLocation){
+        total_images++;
+        this.img = new Image();
+        this.img.src=imageLocation;
+        this.img.onload = () => {
+            loaded_images++;
+        }
+    }	
 
-	drawFragment(x,y,w,h,fx,fy,fw,fh, rot){
-		c.save();
-		c.translate(x+w/2, y+h/2);
-		c.rotate(rot);
-		c.drawImage(this.img, fx,fy,fw,fh,-w/2,-h/2,w,h);
-		c.restore();
-	}
-	drawImg(X,Y,W,H, alpha, dsdx=[0,0], dwdh=[0,0]){
-		c.globalAlpha = alpha;
-		c.drawImage(this.img, X-Camera.position[0],Y-Camera.position[1], W,H);
-		/*
-		if(dwdh == [0,0]){
-		}else{
-			c.drawImage(this.img,...dsdx,...dwdh,X,Y,W,H);
-		}
-		*/
-		c.globalAlpha = 1;
-	}
+    drawFragment(x,y,w,h,fx,fy,fw,fh, rot){
+        c.save();
+        c.translate(x+w/2, y+h/2);
+        c.rotate(rot);
+        c.drawImage(this.img, fx,fy,fw,fh,-w/2,-h/2,w,h);
+        c.restore();
+    }
+    drawImg(X,Y,W,H, alpha, dsdx=[0,0], dwdh=[0,0]){
+        c.globalAlpha = alpha;
+        c.drawImage(this.img, X-Camera.position[0],Y-Camera.position[1], W,H);
+        /*
+            if(dwdh == [0,0]){
+            }else{
+                c.drawImage(this.img,...dsdx,...dwdh,X,Y,W,H);
+            }
+            */
+            c.globalAlpha = 1;
+    }
 
-	drawRotatedImg(X, Y, W, H, alpha, rotation, rotateAroundX = 0, rotateAroundY = 0){
-		c.save();
-		c.translate(X+W/2+Camera.position[0], Y+H/2+Camera.position[1]);
-		c.rotate(rotation);
-		this.drawImg(-W/2, -H/2, W, H, alpha);
-		c.restore();
-	}
+    drawRotatedImg(X, Y, W, H, alpha, rotation, rotateAroundX = 0, rotateAroundY = 0){
+        c.save();
+        c.translate(X+W/2+Camera.position[0], Y+H/2+Camera.position[1]);
+        c.rotate(rotation);
+        this.drawImg(-W/2, -H/2, W, H, alpha);
+        c.restore();
+    }
 }
 
 class spriteSheet{
@@ -279,7 +285,7 @@ class spriteSheet{
         if(this.sheetX >= this.states[this.state][1]*this.w){
             this.sheetX = 0;
         }
-		c.globalAlpha = alpha;
+        c.globalAlpha = alpha;
         c.drawImage(this.img,this.sheetX,this.states[this.state][0],this.w,this.h,this.x,this.y,this.draww,this.drawh);
         c.restore();
     }
@@ -301,7 +307,7 @@ class spriteSheet{
 
 function drawLine(point1, point2, col, lw = 1,alpha=1){
     let x1 = point1[0], y1 = point1[1], x2 = point2[0], y2 = point2[1]; 
-    
+
     c.beginPath();
     c.globalAlpha = alpha
     c.lineWidth = lw
@@ -318,7 +324,7 @@ function drawRect(rect,col,fill=1,fillcolor=col,alpha=1, strokeWidth=1){
     y = rect[1];
     w = rect[2];
     h = rect[3];
-	c.lineWidth = strokeWidth;
+    c.lineWidth = strokeWidth;
     c.save();
     c.strokeStyle = col;
     c.globalAlpha = alpha;
@@ -350,25 +356,25 @@ function drawRoundedRect(rect, radii, col,fill=1,fillcolor=col,alpha=1){
 }
 
 function drawGlowRect(rect, col){
-	c.save();
-	c.beginPath();
+    c.save();
+    c.beginPath();
 
     x = rect[0];
     y = rect[1];
     w = rect[2];
     h = rect[3];
-	radii = 10;
+    radii = 10;
 
     c.roundRect(x,y,w,h,radii);
 
-	c.strokeStyle = col;
-	c.lineWidth = 5;
-	c.shadowColor = col;
-	c.shadowBlur = 20;
-	c.shadowOffsetX = 0;
-	c.shadowOffsetY = 0;
-	c.stroke();
-	c.restore();
+    c.strokeStyle = col;
+    c.lineWidth = 5;
+    c.shadowColor = col;
+    c.shadowBlur = 20;
+    c.shadowOffsetX = 0;
+    c.shadowOffsetY = 0;
+    c.stroke();
+    c.restore();
 }
 
 function drawCircle(pos,r,col,fill=1,fillcolor=col,alpha=1, lw=1){
@@ -415,14 +421,14 @@ function drawRotatedRect(rect, colour, rotation){
     Y = rect[1];
     W = rect[2];
     H = rect[3];
-	c.save();
-	c.translate(X, Y);
-	c.rotate(rotation);
-	c.fillStyle = colour;
-	c.beginPath();
-	c.rect(-W/2,-H/2, W, H);
-	c.fill();
-	c.restore();
+    c.save();
+    c.translate(X, Y);
+    c.rotate(rotation);
+    c.fillStyle = colour;
+    c.beginPath();
+    c.rect(-W/2,-H/2, W, H);
+    c.fill();
+    c.restore();
 }
 class TextBox {
     constructor(string, rect, textSize, color, offset) {
@@ -478,7 +484,7 @@ class TextBox {
                 }else{
                     break;
                 }
-                
+
             }
             newLines.push(newLine);
         }
@@ -506,7 +512,7 @@ function enlargeRect(inputRect, a,b, preserveBottomVerticesY=false){
     for(let i in vertices){
         vertices[i] = math.multiply(L,vertices[i]);
     }
-    
+
     for(let i in vertices){
         vertices[i] = math.subtract(vertices[i], transVec);
     }
@@ -515,48 +521,48 @@ function enlargeRect(inputRect, a,b, preserveBottomVerticesY=false){
 }
 
 function showText(text, X, Y, Size, colour = "rgb(0, 0, 0)", bold = false, stroke = false, fnt = "Komika", align = 'center'){
-	c.save();
-	c.beginPath();
-	if(bold === true){
-		c.font = "bold "+Size+"px " + fnt;
-	}
-	else{
-		c.font = Size+"px " + fnt;
-	}
-	c.textAlign = align;
-	if(stroke === false){
-		c.fillStyle=colour;
-		c.fillText(text, X-Camera.position[0], Y-Camera.position[1]);
-	}
-	if(stroke === true){
-		c.lineWidth = Size/25;
-		c.strokeStyle = colour;
-		c.strokeText(text, X, Y)
-	}
-	c.restore();
+    c.save();
+    c.beginPath();
+    if(bold === true){
+        c.font = "bold "+Size+"px " + fnt;
+    }
+    else{
+        c.font = Size+"px " + fnt;
+    }
+    c.textAlign = align;
+    if(stroke === false){
+        c.fillStyle=colour;
+        c.fillText(text, X-Camera.position[0], Y-Camera.position[1]);
+    }
+    if(stroke === true){
+        c.lineWidth = Size/25;
+        c.strokeStyle = colour;
+        c.strokeText(text, X, Y)
+    }
+    c.restore();
 }
 
 // audio shit
 let sfx = {
-	bg_music: new Howl({
-		src:["./assets/audio/bg_music.mp3"],
-		autoplay:true,
-		loop:true,
-		volume:0.2,
-	}),
-	select: new Howl({src:["./assets/audio/select.mp3"], volume:2}),
-	click: new Howl({src:["./assets/audio/click.mp3"], volume:0.5}),
-	fail: new Howl({src:["./assets/audio/fail.mp3"], volume:0.2}),
-	pop: new Howl({src:["./assets/audio/pop.mp3"]}),
-	woosh: new Howl({src:["./assets/audio/woosh.mp3"], volume: 0.4}),
-	hammer1: new Howl({src:["./assets/audio/hammer.mp3"], volume: 0.5}),
+    bg_music: new Howl({
+        src:["./assets/audio/bg_music.mp3"],
+        autoplay:true,
+        loop:true,
+        volume:0.2,
+    }),
+    select: new Howl({src:["./assets/audio/select.mp3"], volume:2}),
+    click: new Howl({src:["./assets/audio/click.mp3"], volume:0.5}),
+    fail: new Howl({src:["./assets/audio/fail.mp3"], volume:0.2}),
+    pop: new Howl({src:["./assets/audio/pop.mp3"]}),
+    woosh: new Howl({src:["./assets/audio/woosh.mp3"], volume: 0.4}),
+    hammer1: new Howl({src:["./assets/audio/hammer.mp3"], volume: 0.5}),
 
-	wrong: new Howl({src:["./assets/audio/fail.wav"], volume: 1}),
-	correct: new Howl({src:["./assets/audio/success.wav"], volume: 0.5}),
+    wrong: new Howl({src:["./assets/audio/fail.wav"], volume: 1}),
+    correct: new Howl({src:["./assets/audio/success.wav"], volume: 0.5}),
 }
 
 //
-let buttons = {};
+    let buttons = {};
 let transTimer = 0;
 let transTimerMax = 8;
 let transThresh = 2;
@@ -592,20 +598,20 @@ document.addEventListener('touchend', handleTouchEnd, {passive: false} );
 document.addEventListener('touchcancel', handleTouchCancel, {passive: false} );
 
 function get_entity_by_type(type){
-	for(e of entities){
-		if(e instanceof type){
-			return e;
-		}
-	}
+    for(e of entities){
+        if(e instanceof type){
+            return e;
+        }
+    }
 }
 function get_entities_by_type(type){
-	out = []
-	for(e of entities){
-		if(e instanceof type){
-			out.push(e)
-		}
-	}
-	return out;
+    out = []
+    for(e of entities){
+        if(e instanceof type){
+            out.push(e)
+        }
+    }
+    return out;
 }
 
 let cloud_nums = 0;
