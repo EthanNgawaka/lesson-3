@@ -69,6 +69,78 @@ class Nimbus{
 }
 let nimbus = new Nimbus();
 
+class ComicChar{
+	constructor(img_src, rect, text){
+		this.string = "";
+		this.img = new image(img_src);
+		this.rect = rect;
+		this.text = text;
+		this.text_timer = 0;
+		this.ind = 0;
+		this.bubble = new image("./assets/imgs/ui/button.png");
+		this.draw_rect = [...this.rect];
+		this.draw_rect[1] = windowH;
+		this.bubble_bounce = 0;
+		this.targ = this.rect[1]
+
+		this.change_string(this.string);
+	}
+	change_string(new_string){
+		this.string = new_string;
+		let w = windowW*0.3;
+		let h = windowH*0.3;
+		this.textBox = new TextBox(this.string, [this.rect[0]-w/1.3, this.rect[1]-h/1.3, w, h], 30*this.bubble_bounce, "black", [25,25]);
+		//this.textBox.rect = [this.rect[0]-w/1.3 - this.bubble_bounce*w, this.rect[1]-h/1.3 - this.bubble_bounce*h, this.bubble_bounce*w, this.bubble_bounce*h]
+	}
+	close(){
+		this.targ = windowH;
+	}
+	update(dt){
+		this.text_timer += dt;
+		if(this.text_timer > 0.04 && this.ind < this.text.length && math.abs(this.draw_rect[1]-this.rect[1]) < 1){
+			this.bubble_bounce = lerp(this.bubble_bounce, (this.targ == windowH) ? 0 : 1, 0.3);
+			let w = windowW*0.3;
+			let h = windowH*0.3;
+			this.change_string(this.string+this.text[this.ind]);
+			this.textBox.rect = [w/2+this.rect[0]-w/1.3-w*this.bubble_bounce/2, h/2-h*this.bubble_bounce/2+this.rect[1]-h/1.3, this.bubble_bounce*w, this.bubble_bounce*h]
+			this.textBox.textSize = 30*this.bubble_bounce;
+			this.ind ++;
+			this.text_timer = 0;
+		}
+		if(mouse.button.left && !mouse_down2){
+			this.close();
+			if(this.text.length > 0){
+				this.change_string(this.text[0]);
+				this.ind = this.text.length
+			}
+		}
+		if(this.ind >= this.text.length){
+			let w = windowW*0.3;
+			let h = windowH*0.3;
+			this.bubble_bounce = lerp(this.bubble_bounce, (this.targ == windowH) ? 0 : 1, 0.3);
+			this.textBox.rect = [w/2+this.rect[0]-w/1.3-w*this.bubble_bounce/2, h/2-h*this.bubble_bounce/2+this.rect[1]-h/1.3, this.bubble_bounce*w, this.bubble_bounce*h]
+			this.textBox.textSize = math.max(30*this.bubble_bounce, 0);
+			if(math.abs(windowH - this.draw_rect[1]) < 1 && this.targ == windowH){
+				return true;
+			}
+		}
+		return false;
+
+	}
+	draw(){
+		this.draw_rect[1] = lerp(this.draw_rect[1], this.targ, 0.1);
+		let draw_rect = [...this.draw_rect];
+		this.img.drawImg(...draw_rect, 1);
+		if(this.string.length > 0){
+			draw_rect = [...this.textBox.rect];
+			draw_rect[1] += 10
+			draw_rect[0] -= 4
+			this.bubble.drawImg(...draw_rect, 1);
+			this.textBox.draw();
+		}
+	}
+}
+
 class Overlay{
 	constructor(col, lifetime){
 		this.col = col;

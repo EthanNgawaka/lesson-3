@@ -559,6 +559,13 @@ let sfx = {
 
     wrong: new Howl({src:["./assets/audio/fail.wav"], volume: 1}),
     correct: new Howl({src:["./assets/audio/success.wav"], volume: 0.5}),
+
+    intro: [
+        new Howl({src:["./assets/audio/1.mp3"], volume: 0.5}),
+        new Howl({src:["./assets/audio/2.mp3"], volume: 0.5}),
+        new Howl({src:["./assets/audio/3.mp3"], volume: 0.5}),
+        new Howl({src:["./assets/audio/4.mp3"], volume: 0.5}),
+    ]
 }
 
 //

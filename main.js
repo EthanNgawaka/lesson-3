@@ -1,75 +1,77 @@
 const bg = new image("./assets/imgs/bg/room.png");
+const intro_bg = new image("./assets/imgs/bg/intro_bg.png");
 const grad = new image("./assets/imgs/bg/bg.png");
 const rotate = new image("./assets/imgs/ui/rotate.png");
 const eliza = new image("./assets/imgs/eliza/happy.png");
 let bgMusicOn = true;
+let mouse_down2 = true;
 
 let intro = true;
 
 let pool = [];
 worries = {
-  "VALID": [
-    "What if I don’t have enough time to prepare for the test?",
-    "What if my friend misunderstood something I said?",
-    "What if I don’t finish my art project on time?",
-    "What if I don’t know the answer to the teacher’s question?",
-    "What if I feel shy and struggle to make friends at the party?",
-    "What if I don’t perform as well as I’d like in the game?",
-    "What if I accidentally forget to refill my pet’s water bowl?",
-    "What if I make a mistake during my class presentation?",
-    "What if I forget my PE uniform for class?",
-    "What if I struggle to understand today’s lesson?",
-    "What if I forget what to say during my presentation?",
-    "What if I don’t finish my homework neatly on time?",
-    "What if I forget to bring lunch and feel hungry?",
-    "What if I can’t find my library book to return it?",
-    "What if I have a disagreement with a close friend?",
-    "What if I don’t understand the assignment and need clarification?",
-    "What if I struggle to contribute my best in the group project?",
-    "What if I trip and feel embarrassed for a moment?",
-    "What if I miss the bus and arrive late to class?",
-    "What if I spill something and need help cleaning up?",
-    "What if I feel too shy to ask a question in front of the class?",
-    "What if I don’t complete my homework on time?",
-    "What if I feel nervous about hosting my birthday party?",
-    "What if I feel too nervous to share during show-and-tell?",
-    "What if my shoes feel uncomfortable during the day?",
-    "What if I feel nervous about staying with the group on the trip?",
-    "What if I don’t understand today’s math homework?",
-    "What if I don’t play my best in today’s practice?",
-    "What if I don’t do well on this quiz and need to review harder?"
-  ],
-  "INVALID": [
-    "What if I fail the test and the teacher never forgives me?",
-    "What if my friend secretly doesn’t like me anymore?",
-    "What if my drawing is so bad that everyone laughs at me?",
-    "What if the teacher calls on me and I freeze up completely?",
-    "What if nobody talks to me at the party?",
-    "What if I lose the soccer game and everyone blames me?",
-    "What if my pet gets mad at me because I forgot to feed them once?",
-    "What if my classmates laugh at me for trying something new?",
-    "What if I’m the only one wearing the wrong clothes for school?",
-    "What if my teacher thinks I’m not smart because I didn’t get a perfect grade?",
-    "What if I make a small mistake and everyone remembers forever?",
-    "What if my handwriting is too messy and the teacher can’t read it?",
-    "What if my lunch isn’t as good as everyone else’s?",
-    "What if I forget my library book and I’m banned forever?",
-    "What if my friends stop inviting me to play with them?",
-    "What if my teacher gets mad at me for asking too many questions?",
-    "What if my team doesn’t want me to play in the group project?",
-    "What if I trip and everyone in school laughs at me forever?",
-    "What if I’m late for school and the teacher sends me home?",
-    "What if I accidentally spill something during lunch and it becomes a huge deal?",
-    "What if my question in class is the wrong one and everyone laughs?",
-    "What if my homework isn’t perfect and the teacher gets disappointed?",
-    "What if my birthday party isn’t as fun as everyone expects?",
-    "What if my classmates don’t like the story I share during show-and-tell?",
-    "What if my shoes squeak too loudly and everyone notices?",
-    "What if I get lost during the school trip and can’t find anyone?",
-    "What if the teacher thinks I’m bad at math because I made a mistake?",
-    "What if my soccer coach thinks I’m not good enough because I missed one goal?",
-    "What if I fail one quiz and it ruins my entire school year?"
-  ]
+	"VALID": [
+		"What if I don’t have enough time to prepare for the test?",
+		"What if my friend misunderstood something I said?",
+		"What if I don’t finish my art project on time?",
+		"What if I don’t know the answer to the teacher’s question?",
+		"What if I feel shy and struggle to make friends at the party?",
+		"What if I don’t perform as well as I’d like in the game?",
+		"What if I accidentally forget to refill my pet’s water bowl?",
+		"What if I make a mistake during my class presentation?",
+		"What if I forget my PE uniform for class?",
+		"What if I struggle to understand today’s lesson?",
+		"What if I forget what to say during my presentation?",
+		"What if I don’t finish my homework neatly on time?",
+		"What if I forget to bring lunch and feel hungry?",
+		"What if I can’t find my library book to return it?",
+		"What if I have a disagreement with a close friend?",
+		"What if I don’t understand the assignment and need clarification?",
+		"What if I struggle to contribute my best in the group project?",
+		"What if I trip and feel embarrassed for a moment?",
+		"What if I miss the bus and arrive late to class?",
+		"What if I spill something and need help cleaning up?",
+		"What if I feel too shy to ask a question in front of the class?",
+		"What if I don’t complete my homework on time?",
+		"What if I feel nervous about hosting my birthday party?",
+		"What if I feel too nervous to share during show-and-tell?",
+		"What if my shoes feel uncomfortable during the day?",
+		"What if I feel nervous about staying with the group on the trip?",
+		"What if I don’t understand today’s math homework?",
+		"What if I don’t play my best in today’s practice?",
+		"What if I don’t do well on this quiz and need to review harder?"
+	],
+	"INVALID": [
+		"What if I fail the test and the teacher never forgives me?",
+		"What if my friend secretly doesn’t like me anymore?",
+		"What if my drawing is so bad that everyone laughs at me?",
+		"What if the teacher calls on me and I freeze up completely?",
+		"What if nobody talks to me at the party?",
+		"What if I lose the soccer game and everyone blames me?",
+		"What if my pet gets mad at me because I forgot to feed them once?",
+		"What if my classmates laugh at me for trying something new?",
+		"What if I’m the only one wearing the wrong clothes for school?",
+		"What if my teacher thinks I’m not smart because I didn’t get a perfect grade?",
+		"What if I make a small mistake and everyone remembers forever?",
+		"What if my handwriting is too messy and the teacher can’t read it?",
+		"What if my lunch isn’t as good as everyone else’s?",
+		"What if I forget my library book and I’m banned forever?",
+		"What if my friends stop inviting me to play with them?",
+		"What if my teacher gets mad at me for asking too many questions?",
+		"What if my team doesn’t want me to play in the group project?",
+		"What if I trip and everyone in school laughs at me forever?",
+		"What if I’m late for school and the teacher sends me home?",
+		"What if I accidentally spill something during lunch and it becomes a huge deal?",
+		"What if my question in class is the wrong one and everyone laughs?",
+		"What if my homework isn’t perfect and the teacher gets disappointed?",
+		"What if my birthday party isn’t as fun as everyone expects?",
+		"What if my classmates don’t like the story I share during show-and-tell?",
+		"What if my shoes squeak too loudly and everyone notices?",
+		"What if I get lost during the school trip and can’t find anyone?",
+		"What if the teacher thinks I’m bad at math because I made a mistake?",
+		"What if my soccer coach thinks I’m not good enough because I missed one goal?",
+		"What if I fail one quiz and it ruins my entire school year?"
+	]
 };
 
 
@@ -80,12 +82,12 @@ let isTransitioned = true;
 let transSpeed = 0.1;
 
 //mobile formatting//
-function onResize(){
-	canvas.style.width = "92.5vw"
-	canvas.style.height = "90vh"
-	sf[0] = window.innerWidth/windowW;
-	sf[1] = window.innerHeight/windowH;
-}
+	function onResize(){
+		canvas.style.width = "92.5vw"
+		canvas.style.height = "90vh"
+		sf[0] = window.innerWidth/windowW;
+		sf[1] = window.innerHeight/windowH;
+	}
 
 let failed = false;
 function fail(){
@@ -122,21 +124,21 @@ if(window.mobileCheck()){
 }
 //================//
 
-let menu = false;
+	let menu = false;
 function shuffle(array) { // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-  let currentIndex = array.length;
+	let currentIndex = array.length;
 
-  // While there remain elements to shuffle...
-  while (currentIndex != 0) {
+	// While there remain elements to shuffle...
+		while (currentIndex != 0) {
 
-    // Pick a remaining element...
-    let randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
+			// Pick a remaining element...
+				let randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex--;
 
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
-  }
+			// And swap it with the current element.
+				[array[currentIndex], array[randomIndex]] = [
+					array[randomIndex], array[currentIndex]];
+		}
 }
 function switch_to_main(temp=null){
 	worry_pool = {...worries}
@@ -211,7 +213,7 @@ function switch_to_menu(){
 // this inits the whole thing
 switch_to_menu();
 //
-let jiggle_timer = 0;
+	let jiggle_timer = 0;
 function draw(){
 	bg.drawImg(0,0,windowW,windowH, 1);
 	if(!menu && isTransitioned){
@@ -278,7 +280,7 @@ let loading = true;
 if(over){
 	spawn_rate = 0;
 	loading = false;
-	intro = false;
+	//intro = false;
 }
 function update(dt){
 	for(let e of entities){
@@ -316,12 +318,44 @@ function update(dt){
 }
 
 let prev_time = 0;
-let imgs = [new image("./assets/intro/1.jpg"), new image("./assets/intro/2.jpg"), new image("./assets/intro/3.jpg"), new image("./assets/intro/4.jpg")];
-let curr_intro_img = 0;
-let prev_img_pos = [0,0];
-let curr_img_pos = [0,0];
 let mouse_down = false;
 let t = 0;
+
+let index = 0;
+let change = false;
+let play_start =true;
+let curr_chars = [
+	[
+		new ComicChar("./assets/imgs/intro/eliza1.png",
+		[windowW*0.3, windowH/2, windowH*0.5, windowH*0.5],
+		"Woah! Seems like Wu Lee was really worrying about something that's completely unreliable..."),
+		new ComicChar("./assets/imgs/intro/wuli.png",
+		[windowW*0.2, windowH*0.2, windowW*0.8, windowH*0.8],
+		""),
+	],
+	[
+		new ComicChar("./assets/imgs/intro/eliza2.png",
+		[windowW*0.3, windowH*0.65, windowH*0.35, windowH*0.35],
+		"I mean... the black bear doesn't even exist!"),
+		new ComicChar("./assets/imgs/intro/bear.png",
+		[windowW/2, windowH/2, windowW*0.3, windowH*0.5],
+		""),
+		new ComicChar("./assets/imgs/intro/wuli.png",
+		[windowW*0.5, windowH*0.5, windowW*0.5, windowH*0.5],
+		""),
+	],
+	[
+		new ComicChar("./assets/imgs/intro/eliza3.png",
+		[windowW*0.3, windowH/2, windowH*0.5, windowH*0.5],
+		"Come to think of it... I've had same experiences in the past..."),
+	],
+	[
+		new ComicChar("./assets/imgs/intro/eliza4.png",
+		[windowW*0.3, windowH*0.3, windowW*0.7, windowH*0.7],
+		"Let's try and sort some of my past worries into reliable or unreliable!"),
+	]
+];
+
 function main(curr_time){
 	if(prev_time == 0){ prev_time = curr_time; }
 	let dt = (curr_time - prev_time)/1000;
@@ -365,17 +399,24 @@ function main(curr_time){
 	}
 
 	if(intro){
-		if(curr_intro_img > 0){
-			imgs[curr_intro_img-1].drawImg(prev_img_pos[0],prev_img_pos[1],windowW,windowH);
+		if(play_start){
+			setTimeout(()=>{                         
+			  sfx.intro[index].play()}, (1000));
+			play_start = false;
 		}
-		imgs[curr_intro_img].drawImg(curr_img_pos[0],curr_img_pos[1],windowW,windowH);
-		prev_img_pos[0] = lerp(prev_img_pos[0], -windowW, 0.1);
-		curr_img_pos[0] = lerp(curr_img_pos[0], 0, 0.1);
-		if(mouse.button.left && !mouse_down){
-			curr_intro_img++;
-			curr_img_pos[0] = windowW;
-			prev_img_pos[0] = 0;
-			if(curr_intro_img > 3){
+		intro_bg.drawImg(0,0,windowW,windowH,1);
+		let check = true;
+		for(let char of curr_chars[index]){
+			if(!char.update(dt)){
+				check = false;
+			}
+			char.draw();
+		}
+		if(check){
+			index++;
+			setTimeout(()=>{                         
+			  sfx.intro[index].play()}, (1000));
+			if(index >= curr_chars.length){
 				intro = false;
 			}
 		}
@@ -387,6 +428,7 @@ function main(curr_time){
 		if(window.innerHeight > window.innerWidth){
 			rotate.drawImg(windowW/2 - 150/sf[0],windowH/2 - 150/sf[1],300/sf[0],300/sf[1],1);
 		}
+		mouse_down2 = mouse.button.left
 		requestAnimationFrame(main);
 		return;
 	}
