@@ -5,6 +5,7 @@ const rotate = new image("./assets/imgs/ui/rotate.png");
 const eliza = new image("./assets/imgs/eliza/happy.png");
 let bgMusicOn = true;
 let mouse_down2 = true;
+let timeouts = [];
 
 let intro = true;
 
@@ -400,8 +401,8 @@ function main(curr_time){
 
 	if(intro){
 		if(play_start){
-			setTimeout(()=>{                         
-			  sfx.intro[index].play()}, (1000));
+			timeouts.push(setTimeout(()=>{                         
+			  sfx.intro[index].play()}, (1000)));
 			play_start = false;
 		}
 		intro_bg.drawImg(0,0,windowW,windowH,1);
@@ -414,8 +415,14 @@ function main(curr_time){
 		}
 		if(check){
 			index++;
-			setTimeout(()=>{                         
-			  sfx.intro[index].play()}, (1000));
+			for(let t of timeouts){
+				clearTimeout(t);
+			}
+			for(let s of sfx.intro){
+				s.stop();
+			}
+			timeouts.push(setTimeout(()=>{                         
+			  sfx.intro[index].play()}, (1000)));
 			if(index >= curr_chars.length){
 				intro = false;
 			}
