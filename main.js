@@ -328,32 +328,32 @@ let play_start =true;
 let curr_chars = [
 	[
 		new ComicChar("./assets/imgs/intro/eliza1.png",
-		[windowW*0.3, windowH/2, windowH*0.5, windowH*0.5],
-		"Woah! Seems like Wu Lee was really worrying about something that's completely unreliable..."),
+			[windowW*0.3, windowH*0.2, windowH*0.8, windowH*0.8],
+			"Woah! Seems like Wu Lee was really worrying about something that's completely unreliable..."),
 		new ComicChar("./assets/imgs/intro/wuli.png",
-		[windowW*0.2, windowH*0.2, windowW*0.8, windowH*0.8],
-		""),
+			[0, 0, windowW*1, windowH*1],
+			""),
 	],
 	[
 		new ComicChar("./assets/imgs/intro/eliza2.png",
-		[windowW*0.3, windowH*0.65, windowH*0.35, windowH*0.35],
-		"I mean... the black bear doesn't even exist!"),
+			[windowW*0.3, windowH*0.3, windowH*0.7, windowH*0.7],
+			"I mean... the black bear doesn't even exist!"),
 		new ComicChar("./assets/imgs/intro/bear.png",
-		[windowW/2, windowH/2, windowW*0.3, windowH*0.5],
-		""),
+			[windowW*0.7, windowH/2, windowW*0.3, windowH*0.5],
+			""),
 		new ComicChar("./assets/imgs/intro/wuli.png",
-		[windowW*0.5, windowH*0.5, windowW*0.5, windowH*0.5],
-		""),
+			[windowW*0.44, windowH*0.5, windowW*0.5, windowH*0.5],
+			""),
 	],
 	[
 		new ComicChar("./assets/imgs/intro/eliza3.png",
-		[windowW*0.3, windowH/2, windowH*0.5, windowH*0.5],
-		"Come to think of it... I've had same experiences in the past..."),
+			[windowW*0.3, windowH*0.2, windowH*0.8, windowH*0.8],
+			"Come to think of it... I've had same experiences in the past..."),
 	],
 	[
 		new ComicChar("./assets/imgs/intro/eliza4.png",
-		[windowW*0.3, windowH*0.3, windowW*0.7, windowH*0.7],
-		"Let's try and sort some of my past worries into reliable or unreliable!"),
+			[windowW*0.3, windowH*0.3, windowW*0.7, windowH*0.7],
+			"Let's try and sort some of my past worries into reliable or unreliable!"),
 	]
 ];
 
@@ -402,7 +402,7 @@ function main(curr_time){
 	if(intro){
 		if(play_start){
 			timeouts.push(setTimeout(()=>{                         
-			  sfx.intro[index].play()}, (1000)));
+				sfx.intro[index].play()}, (1000)));
 			play_start = false;
 		}
 		intro_bg.drawImg(0,0,windowW,windowH,1);
@@ -415,16 +415,14 @@ function main(curr_time){
 		}
 		if(check){
 			index++;
-			for(let t of timeouts){
-				clearTimeout(t);
-			}
 			for(let s of sfx.intro){
 				s.stop();
 			}
-			timeouts.push(setTimeout(()=>{                         
-			  sfx.intro[index].play()}, (1000)));
 			if(index >= curr_chars.length){
 				intro = false;
+			}else{
+				timeouts.push(setTimeout(()=>{                         
+					sfx.intro[index].play()}, (1000)));
 			}
 		}
 		mouse_down = mouse.button.left;
