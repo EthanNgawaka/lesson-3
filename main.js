@@ -5,6 +5,7 @@ const rotate = new image("./assets/imgs/ui/rotate.png");
 const eliza = new image("./assets/imgs/eliza/happy.png");
 let bgMusicOn = true;
 let mouse_down2 = true;
+let hard_mode = false;
 let timeouts = [];
 
 let intro = true;
@@ -182,6 +183,18 @@ function mute(btn){
 		sfx.bg_music.volume(0);
 	}
 }
+function easy(btn){
+	btn.img = new image("./assets/imgs/ui/green_button01.png");
+	btn.string = "EASY";
+	btn.onAction = hard;
+	hard_mode = false;
+}
+function hard(btn){
+	btn.img = new image("./assets/imgs/ui/red_button04.png");
+	btn.string = "HARD";
+	btn.onAction = easy;
+	hard_mode = true;
+}
 
 function switch_to_menu(){
 	isEnd = false;
@@ -196,9 +209,14 @@ function switch_to_menu(){
 		"START", "white", switch_to_main 
 	));
 	entities.push(new Button(
-		[windowW/2-50,windowH/2+250,100,100],
+		[windowW*0.6-50,windowH/2+250,100,100],
 		bgMusicOn ? "./assets/imgs/ui/audioOn.png":"./assets/imgs/ui/audioOff.png",
 		"", "white", bgMusicOn ? mute : unmute
+	));
+	entities.push(new Button(
+		[windowW*0.4-60,windowH/2+250,120,100],
+		hard_mode ? "./assets/imgs/ui/red_button04.png":"./assets/imgs/ui/green_button01.png",
+		!hard_mode ? "EASY" : "HARD", "white", hard_mode ? easy : hard
 	));
 	let tag = new Button(
 		[windowW*(0.5 - 0.8/2),windowH*0.1,windowW*0.8,windowH*0.2],
@@ -279,9 +297,9 @@ spawn_timer = 0;
 over = false; // debug
 let loading = true;
 if(over){
-	spawn_rate = 0;
+	//spawn_rate = 0;
 	loading = false;
-	//intro = false;
+	intro = false;
 }
 function update(dt){
 	for(let e of entities){
@@ -289,9 +307,13 @@ function update(dt){
 	}
 
 	if(!menu){
-		worry_timer += dt*worry_increase;
+		let mult = 1;
+		if(!hard_mode){
+			mult = 0.5;
+		}
+		worry_timer += dt*worry_increase*mult;
 
-		spawn_timer += dt;
+		spawn_timer += dt*mult;
 		if(spawn_timer > spawn_rate && cloud_nums < 15 && !failed){
 			spawn_rate = over ? 0 : random(3.5,6);
 			spawn_timer = 0;
@@ -464,6 +486,7 @@ function main(curr_time){
 	if(window.innerHeight > window.innerWidth){
 		rotate.drawImg(windowW/2 - 150/sf[0],windowH/2 - 150/sf[1],300/sf[0],300/sf[1],1);
 	}
+	console.log(hard_mode);
 	requestAnimationFrame(main);
 }
 
