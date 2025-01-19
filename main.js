@@ -336,13 +336,13 @@ let curr_chars = [
 	],
 	[
 		new ComicChar("./assets/imgs/intro/eliza2.png",
-			[windowW*0.3, windowH*0.3, windowH*0.7, windowH*0.7],
+			[windowW*0.25, windowH*0.25, windowH*0.75, windowH*0.75],
 			"I mean... the black bear doesn't even exist!"),
 		new ComicChar("./assets/imgs/intro/bear.png",
-			[windowW*0.7, windowH/2, windowW*0.3, windowH*0.5],
+			[windowW*0.7, windowH*0.4, windowW*0.3, windowH*0.5],
 			""),
 		new ComicChar("./assets/imgs/intro/wuli.png",
-			[windowW*0.44, windowH*0.5, windowW*0.5, windowH*0.5],
+			[windowW*0.2, windowH*0.2, windowW*0.8, windowH*0.8],
 			""),
 	],
 	[
