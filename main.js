@@ -184,18 +184,15 @@ function mute(btn){
 	}
 }
 function easy(btn){
-	btn.img = new image("./assets/imgs/ui/green_button01.png");
-	btn.string = "EASY";
-	btn.onAction = hard;
 	hard_mode = false;
+	outline.rect[0] = ((windowW * (hard_mode ? 0.6 : 0.4))-66)
 }
 function hard(btn){
-	btn.img = new image("./assets/imgs/ui/red_button04.png");
-	btn.string = "HARD";
-	btn.onAction = easy;
 	hard_mode = true;
+	outline.rect[0] = (windowW * (hard_mode ? 0.6 : 0.4))-66
 }
 
+let outline = null;
 function switch_to_menu(){
 	isEnd = false;
 	transition();
@@ -209,14 +206,25 @@ function switch_to_menu(){
 		"START", "white", switch_to_main 
 	));
 	entities.push(new Button(
-		[windowW*0.6-50,windowH/2+250,100,100],
+		[windowW*0.5-50,windowH/2+250,100,100],
 		bgMusicOn ? "./assets/imgs/ui/audioOn.png":"./assets/imgs/ui/audioOff.png",
 		"", "white", bgMusicOn ? mute : unmute
 	));
+
+	outline = new Button(
+		enlargeRect([(windowW * (hard_mode ? 0.6 : 0.4))-60,windowH/2+250,120,100], 1.1, 1.1),"./assets/imgs/ui/outline.png",
+		"", "white", function(){} 
+	);
+	entities.push(outline);
 	entities.push(new Button(
 		[windowW*0.4-60,windowH/2+250,120,100],
-		hard_mode ? "./assets/imgs/ui/red_button04.png":"./assets/imgs/ui/green_button01.png",
-		!hard_mode ? "EASY" : "HARD", "white", hard_mode ? easy : hard
+		"./assets/imgs/ui/green_button01.png",
+		"EASY", "white", easy
+	));
+	entities.push(new Button(
+		[windowW*0.6-60,windowH/2+250,120,100],
+		"./assets/imgs/ui/red_button04.png",
+		"HARD", "white", hard
 	));
 	let tag = new Button(
 		[windowW*(0.5 - 0.8/2),windowH*0.1,windowW*0.8,windowH*0.2],
